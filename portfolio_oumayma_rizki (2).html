@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oumayma Rizki | Digital Marketing Specialist</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0f172a',
+              cardDark: '#1e293b',
+              amber: '#f97316',
+              amberHover: '#ea580c',
+              emerald: '#10b981',
+              emeraldDark: '#059669',
+              slateBg: '#0b1120',
+              accent: '#6366f1'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .light .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .page-view {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    }
+    .page-view.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-link.active {
+      color: #f97316 !important;
+      font-weight: 700;
+    }
+    .nav-link.active::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: #f97316;
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #f97316 0%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+
+<body class="bg-[#0b1120] text-slate-100 font-sans antialiased transition-colors duration-300 light:bg-slate-50 light:text-slate-900 min-h-screen flex flex-col justify-between" id="appBody">
+
+  <header class="fixed top-0 left-0 right-0 z-50 glass-card transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-amber to-brand-emerald flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-brand-amber/20 group-hover:scale-105 transition-transform">
+            OR
+          </div>
+          <div>
+            <span class="font-extrabold text-xl tracking-tight text-white light:text-slate-900">
+              Oumayma<span class="text-brand-amber">.</span>
+            </span>
+            <span class="hidden sm:block text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Digital Specialist</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#home" class="nav-link text-sm font-medium text-slate-300 hover:text-brand-amber transition-colors light:text-slate-600">Home</a>
+          <a href="#about" class="nav-link text-sm font-medium text-slate-300 hover:text-brand-amber transition-colors light:text-slate-600">Chi Sono</a>
+          <a href="#projects" class="nav-link text-sm font-medium text-slate-300 hover:text-brand-amber transition-colors light:text-slate-600">Progetti</a>
+          <a href="#services" class="nav-link text-sm font-medium text-slate-300 hover:text-brand-amber transition-colors light:text-slate-600">Servizi & Prezzi</a>
+          <a href="#contact" class="nav-link text-sm font-medium text-slate-300 hover:text-brand-amber transition-colors light:text-slate-600">Contatti</a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="flex items-center gap-4">
+          <!-- Dark / Light Theme Toggle -->
+          <button id="themeToggle" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-all light:bg-slate-200 light:text-slate-700 light:hover:bg-slate-300" aria-label="Cambia Tema">
+            <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+            <i class="fa-solid fa-sun hidden dark:block text-amber-400 text-lg"></i>
+          </button>
+
+          <!-- LinkedIn Direct Button -->
+          <a href="https://www.linkedin.com/in/oumayma-rizki-ab91b740a" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm transition-all shadow-md shadow-blue-600/20">
+            <i class="fa-brands fa-linkedin text-base"></i>
+            <span>LinkedIn</span>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white light:bg-slate-200 light:text-slate-700" aria-label="Menu Mobile">
+            <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 px-4 pt-4 pb-6 space-y-3 bg-[#0b1120] light:bg-white light:border-slate-200 shadow-2xl">
+      <a href="#home" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 light:text-slate-700 light:hover:bg-slate-100">Home Page</a>
+      <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 light:text-slate-700 light:hover:bg-slate-100">Chi Sono</a>
+      <a href="#projects" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 light:text-slate-700 light:hover:bg-slate-100">Progetti & Case Studies</a>
+      <a href="#services" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 light:text-slate-700 light:hover:bg-slate-100">Servizi & Preventivo</a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 light:text-slate-700 light:hover:bg-slate-100">Contatti & Prenotazione</a>
+      <a href="https://www.linkedin.com/in/oumayma-rizki-ab91b740a" target="_blank" class="block w-full text-center py-3 rounded-xl bg-blue-600 text-white font-medium">
+        <i class="fa-brands fa-linkedin mr-2"></i> Profilo LinkedIn
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-grow pt-24 pb-16">
+
+    <!-- PAGE 1: HOME PAGE -->
+    <section id="page-home" class="page-view active">
+      
+      <!-- Hero Section -->
+      <div class="relative pt-12 pb-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7 text-center lg:text-left">
+              <!-- Dynamic badge -->
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-amber/10 border border-brand-amber/20 text-brand-amber text-xs font-bold uppercase tracking-wider mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-amber animate-ping"></span>
+                <span>Disponibile per nuove collaborazioni • 20 Anni</span>
+              </div>
+
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 light:text-slate-900">
+                Strategie Digitali Che Scalano Il Tuo <span class="gradient-text">Business</span>
+              </h1>
+
+              <p class="text-lg sm:text-xl text-slate-300 light:text-slate-600 mb-8 max-w-2xl leading-relaxed">
+                Sono <strong>Oumayma Rizki</strong>, Digital Marketing Specialist. Aiuto aziende, brand locali ed e-commerce a crescere tramite strategie integrate di Social Media, Meta Ads e Copywriting.
+              </p>
+
+              <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-amber to-brand-amberHover text-white font-bold text-base shadow-xl shadow-brand-amber/25 hover:shadow-brand-amber/40 transition-all text-center">
+                  <i class="fa-solid fa-briefcase mr-2"></i> Esplora I Miei Lavori
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-white light:bg-slate-200 light:text-slate-800 light:hover:bg-slate-300 font-semibold text-base transition-all text-center border border-slate-700/50 light:border-slate-300">
+                  <i class="fa-regular fa-comments mr-2"></i> Lavoriamo Insieme
+                </a>
+              </div>
+            </div>
+
+            <!-- Visual Badge & Card -->
+            <div class="lg:col-span-5 flex justify-center">
+              <div class="relative w-full max-w-md">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-amber to-brand-emerald rounded-3xl blur opacity-30"></div>
+                <div class="relative glass-card rounded-3xl p-8 space-y-6">
+                  
+                  <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-amber to-brand-emerald flex items-center justify-center text-white text-2xl font-black shadow-lg">
+                      OR
+                    </div>
+                    <div>
+                      <h3 class="text-xl font-bold text-white light:text-slate-900">Oumayma Rizki</h3>
+                      <p class="text-xs text-brand-emerald font-semibold uppercase tracking-wider">Digital Marketing Specialist</p>
+                    </div>
+                  </div>
+
+                  <div class="space-y-3 pt-2">
+                    <div class="p-3.5 rounded-xl bg-slate-800/50 light:bg-slate-100 flex items-center justify-between text-sm">
+                      <span class="text-slate-400 light:text-slate-600"><i class="fa-solid fa-chart-line text-brand-emerald mr-2"></i> ROAS Medio Meta Ads:</span>
+                      <strong class="text-white light:text-slate-900 font-bold">2.8x - 3.5x</strong>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-slate-800/50 light:bg-slate-100 flex items-center justify-between text-sm">
+                      <span class="text-slate-400 light:text-slate-600"><i class="fa-solid fa-bullseye text-brand-amber mr-2"></i> Tasso Conversione Email:</span>
+                      <strong class="text-white light:text-slate-900 font-bold">4.2% Average</strong>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-slate-800/50 light:bg-slate-100 flex items-center justify-between text-sm">
+                      <span class="text-slate-400 light:text-slate-600"><i class="fa-solid fa-award text-indigo-400 mr-2"></i> Certificazioni:</span>
+                      <strong class="text-white light:text-slate-900 font-bold">Google & Meta</strong>
+                    </div>
+                  </div>
+
+                  <div class="pt-4 border-t border-slate-700/50 light:border-slate-200 flex justify-between items-center text-xs text-slate-400">
+                    <span><i class="fa-solid fa-location-dot text-brand-amber mr-1"></i> Milano, Italia</span>
+                    <span><i class="fa-solid fa-circle text-brand-emerald text-[8px] mr-1"></i> Attiva Ora</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Numbers / Stats Ribbon -->
+      <div class="py-12 bg-slate-900/60 light:bg-white border-y border-slate-800 light:border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <p class="text-3xl sm:text-4xl font-extrabold text-white light:text-slate-900">15+</p>
+            <p class="text-xs sm:text-sm text-slate-400 light:text-slate-500 font-medium mt-1">Progetti Completati</p>
+          </div>
+          <div>
+            <p class="text-3xl sm:text-4xl font-extrabold text-brand-amber">+45%</p>
+            <p class="text-xs sm:text-sm text-slate-400 light:text-slate-500 font-medium mt-1">Engagement Medio Social</p>
+          </div>
+          <div>
+            <p class="text-3xl sm:text-4xl font-extrabold text-brand-emerald">3.2x</p>
+            <p class="text-xs sm:text-sm text-slate-400 light:text-slate-500 font-medium mt-1">ROI Campagne ADV</p>
+          </div>
+          <div>
+            <p class="text-3xl sm:text-4xl font-extrabold text-indigo-400">100%</p>
+            <p class="text-xs sm:text-sm text-slate-400 light:text-slate-500 font-medium mt-1">Soddisfazione Clienti</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Case Studies Preview Section -->
+      <div class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-amber mb-2">Progetti In Evidenza</h2>
+            <p class="text-3xl font-extrabold text-white light:text-slate-900">Un’Anteprima dei Miei Ultimi Lavori</p>
+          </div>
+          <a href="#projects" class="mt-4 md:mt-0 text-brand-amber font-semibold text-sm hover:underline flex items-center gap-2">
+            <span>Vedi Tutti i Case Studies</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          
+          <!-- Card 1 -->
+          <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-1 transition-all">
+            <div class="h-48 overflow-hidden relative">
+              <img src="https://sabrapizza.com/cdn/shop/articles/10-best-pizza-peels-for-flawless-pizza-launches-896058.webp?v=1760602843&width=1100" alt="La Farina" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-slate-900/80 backdrop-blur-md text-brand-amber text-xs font-bold rounded-full">Rebranding Social</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-white light:text-slate-900 mb-2">Pizzeria "La Farina"</h3>
+              <p class="text-sm text-slate-400 light:text-slate-600 mb-4 line-clamp-2">Strategia Reel 'dietro le quinte' e campagna locale per incrementare i coperti infrasettimanali.</p>
+              <div class="flex items-center justify-between text-xs font-bold text-brand-emerald pt-4 border-t border-slate-800 light:border-slate-200">
+                <span>+45% Engagement</span>
+                <button onclick="openModal('project1')" class="text-brand-amber hover:underline">Dettagli <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-1 transition-all">
+            <div class="h-48 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80" alt="EcoThreads" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-slate-900/80 backdrop-blur-md text-purple-400 text-xs font-bold rounded-full">Email Marketing</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-white light:text-slate-900 mb-2">EcoThreads Fashion</h3>
+              <p class="text-sm text-slate-400 light:text-slate-600 mb-4 line-clamp-2">Lead magnet e sequenza email automatizzata di benvenuto per e-commerce di moda sostenibile.</p>
+              <div class="flex items-center justify-between text-xs font-bold text-brand-emerald pt-4 border-t border-slate-800 light:border-slate-200">
+                <span>38% Open Rate</span>
+                <button onclick="openModal('project2')" class="text-brand-amber hover:underline">Dettagli <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-1 transition-all">
+            <div class="h-48 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80" alt="FitRoutine" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-slate-900/80 backdrop-blur-md text-blue-400 text-xs font-bold rounded-full">Meta Ads</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-white light:text-slate-900 mb-2">FitRoutine App</h3>
+              <p class="text-sm text-slate-400 light:text-slate-600 mb-4 line-clamp-2">Campagna Meta Ads di acquisizione utenti con A/B testing tra contenuti UGC e grafiche statiche.</p>
+              <div class="flex items-center justify-between text-xs font-bold text-brand-emerald pt-4 border-t border-slate-800 light:border-slate-200">
+                <span>2.8x ROAS</span>
+                <button onclick="openModal('project3')" class="text-brand-amber hover:underline">Dettagli <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Interactive Skill Showcase Filter -->
+      <div class="py-16 bg-slate-900/40 light:bg-slate-100 border-t border-slate-800 light:border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-10">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-amber mb-2">Competenze Core</h2>
+            <p class="text-3xl font-extrabold text-white light:text-slate-900">Le Miei Skills Strategiche</p>
+          </div>
+
+          <!-- Skill Tabs -->
+          <div class="flex justify-center gap-2 mb-8 overflow-x-auto pb-2">
+            <button onclick="filterHomeSkills('all')" class="home-skill-btn active px-4 py-2 rounded-xl text-xs font-bold bg-brand-amber text-white shadow-md" data-tab="all">Tutte</button>
+            <button onclick="filterHomeSkills('social')" class="home-skill-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 light:bg-slate-200 light:text-slate-700" data-tab="social">Social Media</button>
+            <button onclick="filterHomeSkills('ads')" class="home-skill-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 light:bg-slate-200 light:text-slate-700" data-tab="ads">Meta Ads</button>
+            <button onclick="filterHomeSkills('email')" class="home-skill-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 light:bg-slate-200 light:text-slate-700" data-tab="email">Copy & Email</button>
+          </div>
+
+          <!-- Skill Cards Grid -->
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="homeSkillsGrid">
+            <div class="p-5 glass-card rounded-2xl home-skill-item" data-cat="social">
+              <i class="fa-solid fa-hashtag text-brand-amber text-2xl mb-3"></i>
+              <h4 class="font-bold text-white light:text-slate-900 text-base mb-1">Content Strategy</h4>
+              <p class="text-xs text-slate-400 light:text-slate-600">Piani editoriali, storytelling visivo e Reels per Instagram/TikTok.</p>
+            </div>
+            <div class="p-5 glass-card rounded-2xl home-skill-item" data-cat="ads">
+              <i class="fa-solid fa-rectangle-ad text-blue-400 text-2xl mb-3"></i>
+              <h4 class="font-bold text-white light:text-slate-900 text-base mb-1">Meta Campaign Setup</h4>
+              <p class="text-xs text-slate-400 light:text-slate-600">Business Manager, Pixel tracking, Custom & Lookalike Audiences.</p>
+            </div>
+            <div class="p-5 glass-card rounded-2xl home-skill-item" data-cat="email">
+              <i class="fa-solid fa-envelope-open-text text-purple-400 text-2xl mb-3"></i>
+              <h4 class="font-bold text-white light:text-slate-900 text-base mb-1">Email Automations</h4>
+              <p class="text-xs text-slate-400 light:text-slate-600">Funnel di benvenuto, recupero carrelli e newsletter promozionali.</p>
+            </div>
+            <div class="p-5 glass-card rounded-2xl home-skill-item" data-cat="social">
+              <i class="fa-solid fa-comments text-brand-emerald text-2xl mb-3"></i>
+              <h4 class="font-bold text-white light:text-slate-900 text-base mb-1">Community Management</h4>
+              <p class="text-xs text-slate-400 light:text-slate-600">Gestione interazioni, customer care social e nurturing del pubblico.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial Slider Simulator -->
+      <div class="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-xs font-bold uppercase tracking-widest text-brand-amber mb-2">Testimonianze</h2>
+          <p class="text-3xl font-extrabold text-white light:text-slate-900">Cosa Dicono Di Me</p>
+        </div>
+
+        <div class="glass-card rounded-3xl p-8 sm:p-10 relative">
+          <div id="testimonialContainer" class="space-y-4">
+            <div class="flex items-center gap-1 text-amber-400 mb-2">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p id="testimonialQuote" class="text-lg sm:text-xl text-slate-200 light:text-slate-700 italic font-medium leading-relaxed">
+              "Oumayma ha rivoluzionato la nostra comunicazione Instagram. Nei primi 60 giorni le prenotazioni del nostro locale durante la settimana sono aumentate del 20% grazie ai suoi Reel!"
+            </p>
+            <div class="pt-4 border-t border-slate-700/50 light:border-slate-200">
+              <p id="testimonialAuthor" class="font-bold text-white light:text-slate-900">Marco Rossi</p>
+              <p id="testimonialRole" class="text-xs text-brand-amber">Titolare, Pizzeria La Farina</p>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="flex gap-3 justify-end mt-6">
+            <button onclick="prevTestimonial()" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-brand-amber text-slate-300 hover:text-white flex items-center justify-center transition-all light:bg-slate-200 light:text-slate-700">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button onclick="nextTestimonial()" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-brand-amber text-slate-300 hover:text-white flex items-center justify-center transition-all light:bg-slate-200 light:text-slate-700">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- PAGE 2: CHI SONO PAGE -->
+    <section id="page-about" class="page-view">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-xs font-bold uppercase tracking-widest text-brand-amber mb-2">Chi Sono</h2>
+          <h1 class="text-4xl font-extrabold text-white light:text-slate-900 mb-4">Passione, Strategia e Prospettiva Gen-Z</h1>
+          <p class="text-slate-400 light:text-slate-600 leading-relaxed">
+            A soli 20 anni unisco una comprensione nativa delle dinmiche social con l'accuratezza dell'analisi dati e della strategia di marketing integrata.
+          </p>
+        </div>
+
+        <!-- Story & Background Grid -->
+        <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+          <div class="space-y-6 text-slate-300 light:text-slate-700 leading-relaxed">
+            <h2 class="text-2xl font-bold text-white light:text-slate-900">Il Mio Percorso</h2>
+            <p>
+              Il digitale non è per me solo una professione, ma l'ambiente naturale in cui sono cresciuta. Questo mi permette di individuare i trend prima che diventino saturi e di tradurli in vantaggi competitivi per i miei clienti.
+            </p>
+            <p>
+              Ho iniziato focalizzandomi sulla creazione di contenuti visivi, per poi specializzarmi nel performance marketing e nella gestione del funnel completo: dalla prima impressione al riacquisto.
+            </p>
+            <p>
+              Credo fortemente che ogni euro investito in pubblicità debba avere un obiettivo chiaro e un ritorno misurabile (ROAS).
+            </p>
+          </div>
+
+          <!-- Process Workflow Steps -->
+          <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-white light:text-slate-900 mb-6">Il Mio Metodo di Lavoro</h2>
+
+            <div class="p-5 glass-card rounded-2xl flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-brand-amber/20 text-brand-amber font-bold flex items-center justify-center flex-shrink-0">1</div>
+              <div>
+                <h3 class="font-bold text-white light:text-slate-900 text-base">Research & Benchmark</h3>
+                <p class="text-xs text-slate-400 light:text-slate-600 mt-1">Analisi del mercato, studio dei concorrenti e definizione precisa dei Buyer Persona.</p>
+              </div>
+            </div>
+
+            <div class="p-5 glass-card rounded-2xl flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-brand-emerald/20 text-brand-emerald font-bold flex items-center justify-center flex-shrink-0">2</div>
+              <div>
+                <h3 class="font-bold text-white light:text-slate-900 text-base">Content & Setup Strategy</h3>
+                <p class="text-xs text-slate-400 light:text-slate-600 mt-1">Sviluppo del piano editoriale, configurazione Pixel Meta e copywriting per le campagne.</p>
+              </div>
+            </div>
+
+            <div class="p-5 glass-card rounded-2xl flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 font-bold flex items-center justify-center flex-shrink-0">3</div>
+              <div>
+                <h3 class="font-bold text-white light:text-slate-900 text-base">Execution & Optimization</h3>
+                <p class="text-xs text-slate-400 light:text-slate-600 mt-1">Lancio delle campagne, A/B testing continuo sulle creative e ottimizzazione dei costi per clic.</p>
+              </div>
+            </div>
+
+            <div class="p-5 glass-card rounded-2xl flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 font-bold flex items-center justify-center flex-shrink-0">4</div>
+              <div>
+                <h3 class="font-bold text-white light:text-slate-900 text-base">Reporting & Scaling</h3>
+                <p class="text-xs text-slate-400 light:text-slate-600 mt-1">Report trasparenti sui KPI raggiunti e pianificazione delle azioni di scaling.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications Badges -->
+        <div class="mb-20">
+          <h2 class="text-2xl font-bold text-white light:text-slate-900 mb-8 text-center">Certificazioni Verificate</h2>
+          <div class="grid sm:grid-cols-3 gap-6">
+            
+            <div class="p-6 glass-card rounded-2xl text-center border-t-4 border-blue-500">
+              <div class="w-14 h-14 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                <i class="fa-brands fa-google"></i>
+              </div>
+              <h3 class="font-bold text-white light:text-slate-900">Google Digital Training</h3>
+              <p class="text-xs text-slate-400 light:text-slate-500 mt-1">Fondamenti di Marketing Digitale & Analytics</p>
+              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-emerald mt-4 bg-brand-emerald/10 px-3 py-1 rounded-full"><i class="fa-solid fa-circle-check"></i> Verificato</span>
+            </div>
+
+            <div class="p-6 glass-card rounded-2xl text-center border-t-4 border-blue-600">
+              <div class="w-14 h-14 bg-blue-600/10 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                <i class="fa-brands fa-meta"></i>
+              </div>
+              <h3 class="font-bold text-white light:text-slate-900">Meta Blueprint Certified</h3>
+              <p class="text-xs text-slate-400 light:text-slate-500 mt-1">Gestione Inserzioni e Media Buying Advanced</p>
+              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-emerald mt-4 bg-brand-emerald/10 px-3 py-1 rounded-full"><i class="fa-solid fa-circle-check"></i> Verificato</span>
+            </div>
+
+            <div class="p-6 glass-card rounded-2xl text-center border-t-4 border-orange-500">
+              <div class="w-14 h-14 bg-orange-500/10 text-orange-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                <i class="fa-brands fa-hubspot"></i>
+              </div>
+              <h3 class="font-bold text-white light:text-slate-900">HubSpot Academy</h3>
+              <p class="text-xs text-slate-400 light:text-slate-500 mt-1">Inbound Marketing & Email Strategy</p>
+              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-emerald mt-4 bg-brand-emerald/10 px-3 py-1 rounded-full"><i class="fa-solid fa-circle-check"></i> Verificato</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tech Stack Tools Grid -->
+        <div>
+          <h2 class="text-2xl font-bold text-white light:text-slate-900 mb-8 text-center">Tech Stack & Strumenti Utilizzati</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
+            <div class="p-4 glass-card rounded-xl text-center">
+              <i class="fa-brands fa-meta text-2xl text-blue-500 mb-2"></i>
+              <p class="text-xs font-bold text-white light:text-slate-800">Meta Business</p>
+            </div>
+            <div class="p-4 glass-card rounded-xl text-center">
+              <i class="fa-brands fa-google text-2xl text-amber-400 mb-2"></i>
+              <p class="text-xs font-bold text-white light:text-slate-800">GA4 Analytics</p>
+            </div>
+            <div class="p-4 glass-card rounded-xl text-center">
+              <i class="fa-solid fa-envelope text-2xl text-yellow-500 mb-2"></i>
+              <p class="text-xs font-bold text-white light:text-slate-800">Mailchimp</p>
+            </div>
+            <div class="p-4 glass-card rounded-xl text-center">
+              <i class="fa-solid fa-palette text-2xl text-cyan-400 mb-2"></i>
+              <p class="text-xs font-bold text-white light:text-slate-800">Canva Pro</p>
+            </div>
+            <div class="p-4 glass-card rounded-xl text-center">
+              <i class="fa-brands fa-figma text-2xl text-pink-500 mb-2"></i>
+              <p class="text-xs font-bold text-white light:text-slate-800">Figma</p>
+            </div>
+            <div class="p-4 glass-card rounded-xl text-center">
+              <i class="fa-solid fa-file-powerpoint text-2xl text-slate-300 mb-2"></i>
+              <p class="text-xs font-bold text-white light:text-slate-800">Notion</p>
+            </div>
+            <div class="p-4 glass-card rounded-xl text-center">
+              <i class="fa-solid fa-video text-2xl text-brand-emerald mb-2"></i>
+              <p class="text-xs font-bold text-white light:text-slate-800">CapCut</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAGE 3: PROGETTI PAGE -->
+    <section id="page-projects" class="page-view">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-xs font-bold uppercase tracking-widest text-brand-amber mb-2">Portfolio Completo</h2>
+          <h1 class="text-4xl font-extrabold text-white light:text-slate-900 mb-4">Casi Studio e Risultati Concreti</h1>
+          <p class="text-slate-400 light:text-slate-600">Esplora i progetti realizzati per attività locali, e-commerce e brand di servizi.</p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
+          <button onclick="filterPortfolio('all')" class="port-filter-btn active px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-brand-amber text-white shadow-lg" data-filter="all">Tutti I Progetti</button>
+          <button onclick="filterPortfolio('social')" class="port-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-300 light:bg-slate-200 light:text-slate-700" data-filter="social">Social Media</button>
+          <button onclick="filterPortfolio('ads')" class="port-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-300 light:bg-slate-200 light:text-slate-700" data-filter="ads">Meta Ads</button>
+          <button onclick="filterPortfolio('email')" class="port-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-300 light:bg-slate-200 light:text-slate-700" data-filter="email">Email & Copy</button>
+          <button onclick="filterPortfolio('local')" class="port-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-300 light:bg-slate-200 light:text-slate-700" data-filter="local">Local SEO</button>
+        </div>
+
+        <!-- Portfolio Cards Grid -->
+        <div class="grid md:grid-cols-2 gap-8" id="portfolioGrid">
+          
+          <!-- Project 1 -->
+          <div class="port-card glass-card rounded-3xl overflow-hidden group flex flex-col justify-between" data-cat="social">
+            <div class="h-60 overflow-hidden relative">
+              <img src="https://sabrapizza.com/cdn/shop/articles/10-best-pizza-peels-for-flawless-pizza-launches-896058.webp?v=1760602843&width=1100" alt="La Farina" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-4 left-4 px-3 py-1 bg-slate-900/90 text-brand-amber text-xs font-bold rounded-full">Social Strategy</span>
+            </div>
+            <div class="p-8 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="text-2xl font-bold text-white light:text-slate-900 mb-3">Pizzeria "La Farina" — Rebranding Social</h3>
+                <p class="text-slate-400 light:text-slate-600 text-sm mb-6 leading-relaxed">
+                  Pianificazione editoriale orientata ai Reel Instagram per mostrare la lavorazione artigianale dell'impasto e aumentare i coperti nei giorni infrasettimanali.
+                </p>
+              </div>
+              <div>
+                <div class="grid grid-cols-2 gap-4 py-4 border-y border-slate-700/50 light:border-slate-200 mb-6 text-center">
+                  <div>
+                    <p class="text-xl font-extrabold text-brand-emerald">+45%</p>
+                    <p class="text-[11px] text-slate-400">Engagement Rate</p>
+                  </div>
+                  <div>
+                    <p class="text-xl font-extrabold text-brand-amber">+20%</p>
+                    <p class="text-[11px] text-slate-400">Prenotazioni Tavoli</p>
+                  </div>
+                </div>
+                <button onclick="openModal('project1')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-brand-amber text-white font-bold text-sm transition-all flex items-center justify-center gap-2">
+                  <span>Visualizza Caso Studio Completo</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="port-card glass-card rounded-3xl overflow-hidden group flex flex-col justify-between" data-cat="email">
+            <div class="h-60 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80" alt="EcoThreads" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-4 left-4 px-3 py-1 bg-slate-900/90 text-purple-400 text-xs font-bold rounded-full">Email & Copy</span>
+            </div>
+            <div class="p-8 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="text-2xl font-bold text-white light:text-slate-900 mb-3">EcoThreads — Funnel Email Benvenuto</h3>
+                <p class="text-slate-400 light:text-slate-600 text-sm mb-6 leading-relaxed">
+                  Creazione di un Lead Magnet gratuito e sequenza di 3 e-mail persuasive per presentare i valori del brand ed invogliare al primo acquisto online.
+                </p>
+              </div>
+              <div>
+                <div class="grid grid-cols-2 gap-4 py-4 border-y border-slate-700/50 light:border-slate-200 mb-6 text-center">
+                  <div>
+                    <p class="text-xl font-extrabold text-purple-400">38%</p>
+                    <p class="text-[11px] text-slate-400">Open Rate Medio</p>
+                  </div>
+                  <div>
+                    <p class="text-xl font-extrabold text-brand-emerald">4.5%</p>
+                    <p class="text-[11px] text-slate-400">Conversion Rate</p>
+                  </div>
+                </div>
+                <button onclick="openModal('project2')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-purple-600 text-white font-bold text-sm transition-all flex items-center justify-center gap-2">
+                  <span>Visualizza Caso Studio Completo</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="port-card glass-card rounded-3xl overflow-hidden group flex flex-col justify-between" data-cat="ads">
+            <div class="h-60 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80" alt="FitRoutine" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-4 left-4 px-3 py-1 bg-slate-900/90 text-blue-400 text-xs font-bold rounded-full">Meta Ads</span>
+            </div>
+            <div class="p-8 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="text-2xl font-bold text-white light:text-slate-900 mb-3">FitRoutine App — Acquisizione Utenti</h3>
+                <p class="text-slate-400 light:text-slate-600 text-sm mb-6 leading-relaxed">
+                  Campagna pubblicitaria Meta Ads orientata all'installazione dell'app con test comparativo tra User Generated Content (UGC) e immagini statiche.
+                </p>
+              </div>
+              <div>
+                <div class="grid grid-cols-2 gap-4 py-4 border-y border-slate-700/50 light:border-slate-200 mb-6 text-center">
+                  <div>
+                    <p class="text-xl font-extrabold text-blue-400">2.8x</p>
+                    <p class="text-[11px] text-slate-400">ROAS Generato</p>
+                  </div>
+                  <div>
+                    <p class="text-xl font-extrabold text-brand-emerald">-15%</p>
+                    <p class="text-[11px] text-slate-400">Costo Per Download</p>
+                  </div>
+                </div>
+                <button onclick="openModal('project3')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-blue-600 text-white font-bold text-sm transition-all flex items-center justify-center gap-2">
+                  <span>Visualizza Caso Studio Completo</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="port-card glass-card rounded-3xl overflow-hidden group flex flex-col justify-between" data-cat="local">
+            <div class="h-60 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Boutique Aurora" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-4 left-4 px-3 py-1 bg-slate-900/90 text-brand-emerald text-xs font-bold rounded-full">Local SEO & Shopping</span>
+            </div>
+            <div class="p-8 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="text-2xl font-bold text-white light:text-slate-900 mb-3">Boutique Aurora — Local SEO & Instagram</h3>
+                <p class="text-slate-400 light:text-slate-600 text-sm mb-6 leading-relaxed">
+                  Ottimizzazione profilo Google Business, integrazione catalogo Instagram Shopping e campagna di geofencing per negozio di abbigliamento fisico.
+                </p>
+              </div>
+              <div>
+                <div class="grid grid-cols-2 gap-4 py-4 border-y border-slate-700/50 light:border-slate-200 mb-6 text-center">
+                  <div>
+                    <p class="text-xl font-extrabold text-brand-emerald">+60%</p>
+                    <p class="text-[11px] text-slate-400">Indicazioni Stradali</p>
+                  </div>
+                  <div>
+                    <p class="text-xl font-extrabold text-brand-amber">3.1x</p>
+                    <p class="text-[11px] text-slate-400">Ritorno Spesa ADV</p>
+                  </div>
+                </div>
+                <button onclick="openModal('project4')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-brand-emerald text-white font-bold text-sm transition-all flex items-center justify-center gap-2">
+                  <span>Visualizza Caso Studio Completo</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAGE 4: SERVIZI & PREZZI PAGE -->
+    <section id="page-services" class="page-view">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-xs font-bold uppercase tracking-widest text-brand-amber mb-2">Servizi & Piani</h2>
+          <h1 class="text-4xl font-extrabold text-white light:text-slate-900 mb-4">Soluzioni Trasparenti Su Misura</h1>
+          <p class="text-slate-400 light:text-slate-600">Seleziona i moduli desiderati per calcolare un preventivo stimato immediato per il tuo progetto.</p>
+        </div>
+
+        <!-- Interactive Package Estimator & Calculator -->
+        <div class="glass-card rounded-3xl p-8 sm:p-10 mb-20">
+          <h2 class="text-2xl font-bold text-white light:text-slate-900 mb-2"><i class="fa-solid fa-calculator text-brand-amber mr-2"></i> Calcolatore Preventivo Interattivo</h2>
+          <p class="text-xs text-slate-400 light:text-slate-600 mb-8">Personalizza il tuo pacchetto mensile o la consulenza per avere una stima in tempo reale.</p>
+
+          <div class="grid lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Checkbox Controls -->
+            <div class="lg:col-span-7 space-y-4">
+              
+              <label class="p-4 rounded-2xl bg-slate-800/60 light:bg-slate-100 flex items-center justify-between cursor-pointer border border-transparent hover:border-brand-amber transition-all">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" id="srvSocial" onchange="calculateQuote()" class="w-5 h-5 rounded text-brand-amber focus:ring-brand-amber bg-slate-900">
+                  <div>
+                    <p class="font-bold text-white light:text-slate-900 text-sm">Gestione Social Media (Instagram & TikTok)</p>
+                    <p class="text-xs text-slate-400 light:text-slate-500">Piano editoriale, 3 Reel/settimana, grafica & copy.</p>
+                  </div>
+                </div>
+                <span class="text-sm font-extrabold text-brand-amber">€450/mese</span>
+              </label>
+
+              <label class="p-4 rounded-2xl bg-slate-800/60 light:bg-slate-100 flex items-center justify-between cursor-pointer border border-transparent hover:border-brand-amber transition-all">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" id="srvAds" onchange="calculateQuote()" class="w-5 h-5 rounded text-brand-amber focus:ring-brand-amber bg-slate-900">
+                  <div>
+                    <p class="font-bold text-white light:text-slate-900 text-sm">Gestione Campagne Meta Ads</p>
+                    <p class="text-xs text-slate-400 light:text-slate-500">Creazione inserzioni, pixel setup & A/B test.</p>
+                  </div>
+                </div>
+                <span class="text-sm font-extrabold text-brand-amber">€350/mese</span>
+              </label>
+
+              <label class="p-4 rounded-2xl bg-slate-800/60 light:bg-slate-100 flex items-center justify-between cursor-pointer border border-transparent hover:border-brand-amber transition-all">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" id="srvEmail" onchange="calculateQuote()" class="w-5 h-5 rounded text-brand-amber focus:ring-brand-amber bg-slate-900">
+                  <div>
+                    <p class="font-bold text-white light:text-slate-900 text-sm">Sequenza Email Automatica (Lead Funnel)</p>
+                    <p class="text-xs text-slate-400 light:text-slate-500">3 e-mail di benvenuto + Lead Magnet PDF.</p>
+                  </div>
+                </div>
+                <span class="text-sm font-extrabold text-brand-amber">€250 una tantum</span>
+              </label>
+
+              <!-- Duration Slider -->
+              <div class="pt-4">
+                <div class="flex justify-between text-xs font-bold text-slate-300 light:text-slate-700 mb-2">
+                  <span>Durata Collaborazione:</span>
+                  <span id="monthsDisplay" class="text-brand-amber">3 Mesi</span>
+                </div>
+                <input type="range" id="durationRange" min="1" max="12" value="3" oninput="calculateQuote()" class="w-full accent-brand-amber bg-slate-700 rounded-lg h-2">
+              </div>
+
+            </div>
+
+            <!-- Total Quote Card -->
+            <div class="lg:col-span-5 p-6 rounded-2xl bg-slate-900/90 light:bg-slate-200 border border-brand-amber/30 text-center space-y-4">
+              <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Preventivo Stimato</p>
+              <p class="text-4xl font-black text-brand-amber" id="totalQuoteDisplay">€0</p>
+              <p class="text-xs text-slate-400 light:text-slate-600">Prezzo indicativo e flessibile in base al budget pubblicitario aziendale.</p>
+              <a href="#contact" onclick="prefillContactQuote()" class="block w-full py-3.5 rounded-xl bg-brand-amber hover:bg-brand-amberHover text-white font-bold text-sm shadow-lg transition-all">
+                Richiedi Questo Pacchetto
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Detailed Service Cards Grid -->
+        <div class="grid md:grid-cols-3 gap-8">
+          
+          <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-brand-amber/10 text-brand-amber flex items-center justify-center text-xl mb-6">
+                <i class="fa-solid fa-share-nodes"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white light:text-slate-900 mb-2">Social Media Complete</h3>
+              <p class="text-xs text-slate-400 light:text-slate-600 mb-6">Gestione professionale continua per la massima brand awareness.</p>
+              <ul class="space-y-3 text-xs text-slate-300 light:text-slate-700 mb-8">
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Piano editoriale mensile</li>
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Creazione Reel & TikTok</li>
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Copywriting persuasivo</li>
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Report performance mensile</li>
+              </ul>
+            </div>
+            <a href="#contact" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs text-center transition-all">Scegli Social</a>
+          </div>
+
+          <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border-2 border-brand-amber">
+            <div>
+              <span class="px-3 py-1 bg-brand-amber text-white font-bold text-[10px] uppercase tracking-wider rounded-full">Più Richiesto</span>
+              <div class="w-12 h-12 rounded-xl bg-brand-amber/10 text-brand-amber flex items-center justify-center text-xl my-6">
+                <i class="fa-solid fa-rocket"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white light:text-slate-900 mb-2">Growth Meta Ads</h3>
+              <p class="text-xs text-slate-400 light:text-slate-600 mb-6">Scalare le vendite e i lead attraverso le inserzioni sponsorizzate.</p>
+              <ul class="space-y-3 text-xs text-slate-300 light:text-slate-700 mb-8">
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Setup Business Manager & Pixel</li>
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Strategia di Funnel Ads</li>
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> A/B Testing continuo delle creative</li>
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Ottimizzazione ROAS/CPA</li>
+              </ul>
+            </div>
+            <a href="#contact" class="w-full py-3 rounded-xl bg-brand-amber hover:bg-brand-amberHover text-white font-bold text-xs text-center transition-all shadow-md">Scegli Meta Ads</a>
+          </div>
+
+          <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-6">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white light:text-slate-900 mb-2">Audit Digital 1-to-1</h3>
+              <p class="text-xs text-slate-400 light:text-slate-600 mb-6">Analisi completa dei tuoi canali attuali con report correttivo.</p>
+              <ul class="space-y-3 text-xs text-slate-300 light:text-slate-700 mb-8">
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Analisi profili Instagram & TikTok</li>
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Controllo campagne attive</li>
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Call di 60 minuti registrata</li>
+                <li><i class="fa-solid fa-check text-brand-emerald mr-2"></i> Action plan in PDF</li>
+              </ul>
+            </div>
+            <a href="#contact" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs text-center transition-all">Prenota Audit</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAGE 5: CONTATTI PAGE -->
+    <section id="page-contact" class="page-view">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-xs font-bold uppercase tracking-widest text-brand-amber mb-2">Contatti</h2>
+          <h1 class="text-4xl font-extrabold text-white light:text-slate-900 mb-4">Iniziamo A Costruire Il Tuo Successo</h1>
+          <p class="text-slate-400 light:text-slate-600">Compila il form per un messaggio rapido o prenota direttamente una call conoscitiva gratuita di 15 minuti.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Contact Form -->
+          <div class="lg:col-span-7 glass-card rounded-3xl p-8 sm:p-10">
+            <h2 class="text-xl font-bold text-white light:text-slate-900 mb-6"><i class="fa-regular fa-paper-plane text-brand-amber mr-2"></i> Invia un Messaggio</h2>
+
+            <form id="mainContactForm" onsubmit="submitContactForm(event)" class="space-y-6">
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-xs font-bold text-slate-300 light:text-slate-700 uppercase mb-2">Nome Completo *</label>
+                  <input type="text" id="contactName" required placeholder="Es. Mario Rossi" class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-amber light:bg-slate-100 light:border-slate-300 light:text-slate-900 text-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-300 light:text-slate-700 uppercase mb-2">Email *</label>
+                  <input type="email" id="contactEmail" required placeholder="mario@azienda.it" class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-amber light:bg-slate-100 light:border-slate-300 light:text-slate-900 text-sm">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-300 light:text-slate-700 uppercase mb-2">Servizio Richiesto</label>
+                <select id="contactService" class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white focus:outline-none focus:border-brand-amber light:bg-slate-100 light:border-slate-300 light:text-slate-900 text-sm">
+                  <option value="Social Media Strategy">Social Media Strategy</option>
+                  <option value="Campagne Meta Ads">Campagne Meta Ads</option>
+                  <option value="Email Marketing">Email Marketing</option>
+                  <option value="Audit Digitale">Audit Digitale</option>
+                  <option value="Preventivo Personalizzato">Preventivo Personalizzato</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-300 light:text-slate-700 uppercase mb-2">Messaggio *</label>
+                <textarea id="contactMessage" required rows="4" placeholder="Descrivi brevemente la tua attività e i tuoi obiettivi..." class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-amber light:bg-slate-100 light:border-slate-300 light:text-slate-900 text-sm"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-4 rounded-xl bg-brand-amber hover:bg-brand-amberHover text-white font-bold text-base shadow-lg shadow-brand-amber/25 transition-all">
+                Invia Messaggio Ora
+              </button>
+            </form>
+
+            <div id="contactFormSuccess" class="hidden text-center py-12 space-y-4">
+              <div class="w-16 h-16 rounded-full bg-brand-emerald/20 text-brand-emerald flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-white light:text-slate-900">Grazie per il messaggio!</h3>
+              <p class="text-slate-400 light:text-slate-600 text-sm">Ti risponderò entro 24 ore lavorative all'indirizzo e-mail fornito.</p>
+            </div>
+          </div>
+
+          <!-- Calendar Call Booking Simulator -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="font-bold text-white light:text-slate-900 text-lg mb-2"><i class="fa-regular fa-calendar-check text-brand-emerald mr-2"></i> Prenota Discovery Call</h3>
+              <p class="text-xs text-slate-400 light:text-slate-600 mb-6">Scegli un orario libero per una consulenza gratuita di 15 minuti su Google Meet.</p>
+
+              <!-- Date Picker Simulator -->
+              <div class="space-y-4">
+                <label class="block text-xs font-bold text-slate-300 light:text-slate-700 uppercase">Seleziona Giorno:</label>
+                <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                  <button type="button" onclick="selectBookingDate(this, 'Lunedì 12 Ottobre')" class="booking-date-btn p-3 rounded-xl bg-slate-800 text-white hover:bg-brand-emerald font-semibold transition-all">
+                    Lun 12 Ott
+                  </button>
+                  <button type="button" onclick="selectBookingDate(this, 'Martedì 13 Ottobre')" class="booking-date-btn p-3 rounded-xl bg-slate-800 text-white hover:bg-brand-emerald font-semibold transition-all">
+                    Mar 13 Ott
+                  </button>
+                  <button type="button" onclick="selectBookingDate(this, 'Mercoledì 14 Ottobre')" class="booking-date-btn p-3 rounded-xl bg-slate-800 text-white hover:bg-brand-emerald font-semibold transition-all">
+                    Mer 14 Ott
+                  </button>
+                </div>
+
+                <label class="block text-xs font-bold text-slate-300 light:text-slate-700 uppercase pt-2">Seleziona Orario:</label>
+                <div class="grid grid-cols-2 gap-2 text-center text-xs">
+                  <button type="button" onclick="selectBookingTime(this, '10:30')" class="booking-time-btn p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-brand-emerald hover:text-white transition-all">10:30</button>
+                  <button type="button" onclick="selectBookingTime(this, '14:00')" class="booking-time-btn p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-brand-emerald hover:text-white transition-all">14:00</button>
+                  <button type="button" onclick="selectBookingTime(this, '16:30')" class="booking-time-btn p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-brand-emerald hover:text-white transition-all">16:30</button>
+                  <button type="button" onclick="selectBookingTime(this, '18:00')" class="booking-time-btn p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-brand-emerald hover:text-white transition-all">18:00</button>
+                </div>
+
+                <button type="button" onclick="confirmCallBooking()" class="w-full py-3 mt-4 rounded-xl bg-brand-emerald hover:bg-brand-emeraldDark text-white font-bold text-xs uppercase tracking-wider transition-all">
+                  Conferma Call Su Meet
+                </button>
+              </div>
+            </div>
+
+            <!-- Direct Contact Methods -->
+            <div class="glass-card rounded-3xl p-6 space-y-4">
+              <div onclick="copyText('oumayma.rizki16@gmail.com', 'Email')" class="p-3.5 rounded-xl bg-slate-800/60 light:bg-slate-100 flex items-center justify-between cursor-pointer hover:border-brand-amber transition-all">
+                <div class="flex items-center gap-3">
+                  <i class="fa-regular fa-envelope text-brand-amber text-lg"></i>
+                  <div>
+                    <p class="text-[11px] text-slate-400">Email Diretta</p>
+                    <p class="text-xs font-bold text-white light:text-slate-900">oumayma.rizki16@gmail.com</p>
+                  </div>
+                </div>
+                <i class="fa-regular fa-copy text-slate-400"></i>
+              </div>
+
+              <a href="https://www.linkedin.com/in/oumayma-rizki-ab91b740a" target="_blank" class="p-3.5 rounded-xl bg-slate-800/60 light:bg-slate-100 flex items-center justify-between hover:border-blue-500 transition-all">
+                <div class="flex items-center gap-3">
+                  <i class="fa-brands fa-linkedin-in text-blue-500 text-lg"></i>
+                  <div>
+                    <p class="text-[11px] text-slate-400">Profilo LinkedIn</p>
+                    <p class="text-xs font-bold text-white light:text-slate-900">Oumayma Rizki</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-slate-400"></i>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900/80 light:bg-white border-t border-slate-800 light:border-slate-200 py-8 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 Oumayma Rizki • Digital Marketing Portfolio</p>
+      <div class="flex gap-6">
+        <a href="#home" class="hover:text-brand-amber">Home</a>
+        <a href="#about" class="hover:text-brand-amber">Chi Sono</a>
+        <a href="#projects" class="hover:text-brand-amber">Progetti</a>
+        <a href="#contact" class="hover:text-brand-amber">Contatti</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Viewer for Detailed Case Studies -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="glass-card max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-8 relative bg-[#0b1120] light:bg-white text-slate-100 light:text-slate-900 border border-slate-700">
+      <button onclick="closeModal()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden px-5 py-3 rounded-xl bg-brand-emerald text-white font-medium text-xs shadow-2xl flex items-center gap-3">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastText">Operazione completata!</span>
+  </div>
+
+  <script>
+    // -------------------------------------------------------------
+    // SPA ROUTER LOGIC (Hash Routing)
+    // -------------------------------------------------------------
+    function handleRouting() {
+      let hash = window.location.hash || '#home';
+      const validPages = ['#home', '#about', '#projects', '#services', '#contact'];
+      
+      if (!validPages.includes(hash)) hash = '#home';
+
+      // Hide all page views
+      document.querySelectorAll('.page-view').forEach(page => {
+        page.classList.remove('active');
+      });
+
+      // Show targeted page
+      const activePage = document.getElementById(`page-${hash.replace('#', '')}`);
+      if (activePage) {
+        activePage.classList.add('active');
+      }
+
+      // Update Header Navigation Active link
+      document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('href') === hash) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('hashchange', handleRouting);
+    window.addEventListener('load', handleRouting);
+
+    // Dark/Light Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      html.classList.toggle('light');
+    }
+
+    // Mobile Menu Drawer Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // -------------------------------------------------------------
+    // TESTIMONIAL SLIDER SIMULATION
+    // -------------------------------------------------------------
+    const testimonials = [
+      {
+        quote: "Oumayma ha rivoluzionato la nostra comunicazione Instagram. Nei primi 60 giorni le prenotazioni del nostro locale durante la settimana sono aumentate del 20% grazie ai suoi Reel!",
+        author: "Marco Rossi",
+        role: "Titolare, Pizzeria La Farina"
+      },
+      {
+        quote: "La sequenza e-mail d'inaugurazione preparata da Oumayma ha generato un tasso di apertura del 38% e centinaia di vendite alla prima settimana di lancio.",
+        author: "Elena Bianchi",
+        role: "Founder, EcoThreads Fashion"
+      },
+      {
+        quote: "Professionalità e precisione nei report eccezionali. Ha abbassato il nostro costo per acquisto sulle Meta Ads di oltre il 15% in sole tre settimane.",
+        author: "Davide Conti",
+        role: "CMO, FitRoutine App"
+      }
+    ];
+
+    let currentTestimonial = 0;
+
+    function updateTestimonial() {
+      const item = testimonials[currentTestimonial];
+      document.getElementById('testimonialQuote').innerText = `"${item.quote}"`;
+      document.getElementById('testimonialAuthor').innerText = item.author;
+      document.getElementById('testimonialRole').innerText = item.role;
+    }
+
+    function nextTestimonial() {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      updateTestimonial();
+    }
+
+    function prevTestimonial() {
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      updateTestimonial();
+    }
+
+    // -------------------------------------------------------------
+    // SKILL & PORTFOLIO FILTERING
+    // -------------------------------------------------------------
+    function filterHomeSkills(cat) {
+      document.querySelectorAll('.home-skill-btn').forEach(btn => {
+        if (btn.getAttribute('data-tab') === cat) {
+          btn.classList.add('bg-brand-amber', 'text-white');
+          btn.classList.remove('bg-slate-800', 'text-slate-300');
+        } else {
+          btn.classList.remove('bg-brand-amber', 'text-white');
+          btn.classList.add('bg-slate-800', 'text-slate-300');
+        }
+      });
+
+      document.querySelectorAll('.home-skill-item').forEach(item => {
+        if (cat === 'all' || item.getAttribute('data-cat') === cat) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function filterPortfolio(cat) {
+      document.querySelectorAll('.port-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === cat) {
+          btn.classList.add('bg-brand-amber', 'text-white');
+          btn.classList.remove('bg-slate-800', 'text-slate-300');
+        } else {
+          btn.classList.remove('bg-brand-amber', 'text-white');
+          btn.classList.add('bg-slate-800', 'text-slate-300');
+        }
+      });
+
+      document.querySelectorAll('.port-card').forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // -------------------------------------------------------------
+    // INTERACTIVE PACKAGE CALCULATOR
+    // -------------------------------------------------------------
+    function calculateQuote() {
+      const social = document.getElementById('srvSocial').checked ? 450 : 0;
+      const ads = document.getElementById('srvAds').checked ? 350 : 0;
+      const email = document.getElementById('srvEmail').checked ? 250 : 0;
+      const duration = parseInt(document.getElementById('durationRange').value);
+
+      document.getElementById('monthsDisplay').innerText = `${duration} Mesi`;
+
+      const monthlyTotal = (social + ads) * duration;
+      const grandTotal = monthlyTotal + email;
+
+      document.getElementById('totalQuoteDisplay').innerText = `€${grandTotal}`;
+    }
+
+    function prefillContactQuote() {
+      const grandTotal = document.getElementById('totalQuoteDisplay').innerText;
+      document.getElementById('contactService').value = 'Preventivo Personalizzato';
+      document.getElementById('contactMessage').value = `Salve Oumayma, vorrei richiedere il pacchetto selezionato per una stima di ${grandTotal}.`;
+    }
+
+    // -------------------------------------------------------------
+    // CASE STUDY MODAL DATA & FUNCTIONS
+    // -------------------------------------------------------------
+    const modalDetails = {
+      project1: {
+        title: "Pizzeria La Farina — Rebranding Social",
+        category: "Social Media Strategy",
+        image: "https://sabrapizza.com/cdn/shop/articles/10-best-pizza-peels-for-flawless-pizza-launches-896058.webp?v=1760602843&width=1100",
+        problem: "Scarso riempimento dei tavoli nei giorni infrasettimanali e mancanza di un format visivo distinguibile su Instagram.",
+        solution: "Format Reel sulle 48h di lievitazione, promozione locale del 'Mercoledì Gourmet' e link diretto per prenotare il tavolo.",
+        results: ["+45% Interazioni Social", "+20% Prenotazioni Infrasettimanali", "30k+ Views sui Reels"]
+      },
+      project2: {
+        title: "EcoThreads Fashion — Email Automation",
+        category: "Copywriting & Email Marketing",
+        image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80",
+        problem: "Molti visitatori unici sul sito web ma tasso di conversione all'acquisto inferiore all'1%.",
+        solution: "Creazione Lead Magnet 'Guida Guardaroba Sostenibile' + sequenza benvenuto a 3 e-mail con sconto 10%.",
+        results: ["38% Open Rate Medio", "4.5% Tasso Conversione", "1,200+ Nuovi Lead"]
+      },
+      project3: {
+        title: "FitRoutine App — Meta Ads Campaign",
+        category: "Performance Marketing",
+        image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
+        problem: "Costo per installazione (CPI) troppo elevato sulla prima campagna pubblicitaria lanciata in autonomia.",
+        solution: "Creazione annunci UGC in collaborazione con micro-influencer fitness e retargeting su chi ha visitato la landing.",
+        results: ["2.8x ROAS Complessivo", "-15% Costo Per Download", "12k Nuovi Download"]
+      },
+      project4: {
+        title: "Boutique Aurora — Local SEO & Instagram",
+        category: "Local SEO & Shopping",
+        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
+        problem: "Scarsa visibilità del negozio fisico nelle ricerche locali su Google Maps.",
+        solution: "Ottimizzazione profilo Google Business, catalogo Instagram Shopping e geofencing ad alto raggio.",
+        results: ["+60% Indicazioni Stradali Google", "3.1x ROAS su Campagne Locali", "+35% Visite in Negozio"]
+      }
+    };
+
+    function openModal(id) {
+      const data = modalDetails[id];
+      if (!data) return;
+
+      document.getElementById('modalContent').innerHTML = `
+        <div class="space-y-6">
+          <div class="h-56 rounded-2xl overflow-hidden relative">
+            <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+              <div>
+                <span class="text-[10px] font-bold text-brand-amber uppercase tracking-wider bg-black/60 px-3 py-1 rounded-full">${data.category}</span>
+                <h3 class="text-2xl font-bold text-white mt-1">${data.title}</h3>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-bold text-brand-amber uppercase tracking-wider mb-1">Problema Iniziale</h4>
+            <p class="text-xs sm:text-sm text-slate-300 light:text-slate-700">${data.problem}</p>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-bold text-brand-amber uppercase tracking-wider mb-1">Soluzione & Strategia</h4>
+            <p class="text-xs sm:text-sm text-slate-300 light:text-slate-700">${data.solution}</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900 light:bg-slate-100 border border-brand-amber/30">
+            <h4 class="text-xs font-bold text-brand-emerald uppercase tracking-wider mb-3">Risultati Misurati</h4>
+            <div class="grid grid-cols-3 gap-2 text-center font-bold text-xs text-brand-emerald">
+              ${data.results.map(r => `<div class="p-2 rounded-xl bg-slate-800 light:bg-white">${r}</div>`).join('')}
+            </div>
+          </div>
+
+          <div class="pt-2 text-right">
+            <a href="#contact" onclick="closeModal()" class="px-6 py-2.5 rounded-xl bg-brand-amber text-white font-bold text-xs">Richiedi Una Strategia Simile</a>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('projectModal').classList.remove('hidden');
+      document.getElementById('projectModal').classList.add('flex');
+    }
+
+    function closeModal() {
+      document.getElementById('projectModal').classList.add('hidden');
+      document.getElementById('projectModal').classList.remove('flex');
+    }
+
+    // -------------------------------------------------------------
+    // BOOKING SIMULATOR & CONTACT FORM
+    // -------------------------------------------------------------
+    let selectedDate = '';
+    let selectedTime = '';
+
+    function selectBookingDate(btn, dateStr) {
+      document.querySelectorAll('.booking-date-btn').forEach(b => b.classList.remove('bg-brand-emerald', 'text-white'));
+      btn.classList.add('bg-brand-emerald', 'text-white');
+      selectedDate = dateStr;
+    }
+
+    function selectBookingTime(btn, timeStr) {
+      document.querySelectorAll('.booking-time-btn').forEach(b => b.classList.remove('bg-brand-emerald', 'text-white'));
+      btn.classList.add('bg-brand-emerald', 'text-white');
+      selectedTime = timeStr;
+    }
+
+    function confirmCallBooking() {
+      if (!selectedDate || !selectedTime) {
+        showToast('Seleziona sia un giorno che un orario!');
+        return;
+      }
+      showToast(`Call prenotata per ${selectedDate} alle ${selectedTime}!`);
+    }
+
+    function submitContactForm(e) {
+      e.preventDefault();
+      document.getElementById('mainContactForm').classList.add('hidden');
+      document.getElementById('contactFormSuccess').classList.remove('hidden');
+    }
+
+    function copyText(text, label) {
+      document.execCommand('copy');
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`${label} copiata!`);
+      }).catch(() => {
+        showToast(`${label}: ${text}`);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastText').innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
